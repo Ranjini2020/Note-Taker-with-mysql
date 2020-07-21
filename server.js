@@ -77,6 +77,7 @@ app.get("/api/notes", function(req, res) {
 // });
 
 app.post ("/api/notes", function(req, res) {
+ 
 
   try {
     const noteRequest = req.body;
@@ -92,6 +93,7 @@ app.post ("/api/notes", function(req, res) {
         if (err) throw err;
         else 
         {
+          res.redirect("/notes")
           console.log(" Note was succesfully created!");
         }
       }
@@ -102,7 +104,6 @@ app.post ("/api/notes", function(req, res) {
     console.log(error);
   }
 });
-
 
 
 
