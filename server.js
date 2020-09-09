@@ -21,20 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "develop/public")));
 
 
-//API GET requests to handle when a user "visit" a page
-// app.get("/api/notes", function(err, res) {
-//   try {
-//     notesData = fs.readFileSync("develop/db/db.json", "utf8");
-//     notesData = JSON.parse(notesData);
-
-//   } catch (err) {
-//     console.log("\n error (in app.get.catch):");
-//     console.log(err);
-//   }
-
-//   res.json(notesData);
-// });
-
 app.get("/api/notes", function(req, res) {
   try {
     connection.query ("SELECT * FROM note")
@@ -49,32 +35,7 @@ app.get("/api/notes", function(req, res) {
     res.send(error);
   }
 })
-//API POST requests to handle when a user creates new notesData and save
-// app.post("/api/notes", function(req, res) {
-//   try {
- 
-//       notesData = fs.readFileSync("./develop/db/db.json", "utf8");
-//       console.log(notesData);
 
-//       notesData = JSON.parse(notesData);
-//       req.body.id = notesData.length;
-//       // The saved notesData is pushed to the appropraite JavaScripts array.
-//       notesData.push(req.body); 
-
-//       notesData = JSON.stringify(notesData);
-    
-//       fs.writeFile("./develop/db/db.json", notesData, "utf8", function(err) {
-
-//       if (err) throw err;
-//     });
-   
-//     res.json(JSON.parse(notesData));
-
-//   } catch (err) {
-//     throw err;
-//     console.error(err);
-//   }
-// });
 
 app.post ("/api/notes", function(req, res) {
  
@@ -106,34 +67,6 @@ app.post ("/api/notes", function(req, res) {
 });
 
 
-
-//API DELETE receive a query parameter containing the id of a note to delete.
-// app.delete("/api/notes/:id", function(req, res) {
-//   try {
-
-//     notesData = fs.readFileSync("./develop/db/db.json", "utf8");
-
-//     notesData = JSON.parse(notesData);
-   
-//     notesData = notesData.filter(function(note) {
-//       return note.id != req.params.id;
-//     });
-
-//     notesData = JSON.stringify(notesData);
-
-//     // New Data file after deletion is written to the db.jason file.
-//     fs.writeFile("./develop/db/db.json", notesData, "utf8", function(err) {
-
-//       if (err) throw err;
-//     });
-
-//     res.send(JSON.parse(notesData));
-
-//   } catch (err) {
-//     throw err;
-//     console.log(err);
-//   }
-// });
 
 app.delete("/api/notes/:id", function (req, res) {
 connection.query (
